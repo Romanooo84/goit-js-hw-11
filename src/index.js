@@ -127,7 +127,7 @@ function getData(data) {
         //wywołaeni funkcji tworzenia galerii
         createGallery(photoData)
         //utworzenie punkut przewijania
-        scrollPoint = `<div id='${pageNumber}'></div>`;
+        let scrollPoint = `<div id='${pageNumber}'></div>`;
         gallery.insertAdjacentHTML("beforeend", scrollPoint);
         //ustawienie nowego numeru strony do pobrania zdjęc  
     })
