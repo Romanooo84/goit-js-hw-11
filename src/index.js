@@ -109,16 +109,16 @@ function getData(data) {
             Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
             return photoData
         }
-         else if (totalHits < perPage && photoData.length !== 0){
+        else if (photoData.length !== 0) {
+            //zwrócenie obrobionych danych
+            return photoData
+        }  
+        else if (totalHits < perPage){
             Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
             scroll.classList.add('visually-hidden')
             return photoData
         } 
-         else if (photoData.length !== 0) {
-            //zwrócenie obrobionych danych
-            return photoData
-        }  
-         else if (photoData.length === 0)  {
+        else if (photoData.length === 0)  {
             Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
         }    
        
