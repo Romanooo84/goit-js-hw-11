@@ -66,11 +66,6 @@ function scrollPage(event) {
     event.preventDefault()
     let userInput = input.value;
     userInput.split(" ").join('+');
-    if (totalHits < perPage){
-            Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
-            scroll.classList.add('visually-hidden')
-            return photoData
-        } 
     getData(userInput);
 }
 
@@ -115,13 +110,19 @@ function getData(data) {
             Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
             return photoData
         }
+        else if (photoData.length === 0 && pageNumber === 1)  {
+            Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
+        }   
         else if (photoData.length !== 0) {
             //zwrócenie obrobionych danych
             return photoData
-        }  
-        else if (photoData.length === 0)  {
-            Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
-        }    
+        } 
+        else {
+          Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
+          scroll.classList.add('visually-hidden')
+        } 
+     
+       
        
     })
     .then((photoData) => {
