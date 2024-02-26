@@ -113,7 +113,7 @@ function getData(data) {
             //zwrócenie obrobionych danych
             return photoData
         }  
-        else if (totalHits < perPage){
+        else if (totalHits < perPage && photoData.length !== 0)){
             Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
             scroll.classList.add('visually-hidden')
             return photoData
