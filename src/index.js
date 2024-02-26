@@ -11,6 +11,7 @@ let newScrollPoint
 let pageNumber = 1
 let lightbox
 let perPage = 40
+let totalHits
 
 //inicjalizacja Notyiflix
 Notiflix.Notify.init({
@@ -65,6 +66,11 @@ function scrollPage(event) {
     event.preventDefault()
     let userInput = input.value;
     userInput.split(" ").join('+');
+    if (totalHits < perPage){
+            Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
+            scroll.classList.add('visually-hidden')
+            return photoData
+        } 
     getData(userInput);
 }
 
@@ -113,11 +119,6 @@ function getData(data) {
             //zwrócenie obrobionych danych
             return photoData
         }  
-        else if (totalHits < perPage){
-            Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
-            scroll.classList.add('visually-hidden')
-            return photoData
-        } 
         else if (photoData.length === 0)  {
             Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
         }    
