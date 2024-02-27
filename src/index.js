@@ -100,11 +100,8 @@ function getData(data) {
     //po pobraniu danych z serwera
     photoDwonload()
         .then(response => {
-            let totalHits = response.data.totalHits
-            console.log(response.data)
+        let totalHits = response.data.totalHits  
         let photoData = response.data.hits;//wybranie odpowiednich danych z obiektu
-            console.log(totalHits)
-            console.log(photoData.length)
         //spawdzenie czy pierwsza paczka jest pełna
         if (photoData.length !== 0 && pageNumber === 1) {
             //zwrócenie obrobionych danych
