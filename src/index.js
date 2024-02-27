@@ -50,6 +50,7 @@ searchButton.addEventListener('click', start)
 //nasłuchiwanie przycisku przewijania strony
 scroll.addEventListener('click', scrollPage)
 
+//nasłuchiwanie klikniecia w galerie
 gallery.addEventListener('click',openBigImage)
 
 function start(event) {
@@ -104,26 +105,26 @@ function getData(data) {
         let photoData = response.data.hits;//wybranie odpowiednich danych z obiektu
             console.log(totalHits)
             console.log(photoData.length)
-        //spawdzenie czy cos jest w obiekcie
+        //spawdzenie czy pierwsza paczka jest pełna
         if (photoData.length !== 0 && pageNumber === 1) {
             //zwrócenie obrobionych danych
             Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
             return photoData
         }
+        //jezeli pusta to
         else if (photoData.length === 0 && pageNumber === 1)  {
             Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.")
         }   
+        //jezeli kolejna to
         else if (photoData.length !== 0) {
             //zwrócenie obrobionych danych
             return photoData
         } 
+        //w innym przypadku
         else {
           Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
           scroll.classList.add('visually-hidden')
-        } 
-     
-       
-       
+        }  
     })
     .then((photoData) => {
         //wywołaeni funkcji tworzenia galerii
@@ -173,6 +174,7 @@ function createGallery(photoData) {
             </p>
         </div>
     </div>`).join('')
+    //zainicjowanie lightboxa
     gallery.insertAdjacentHTML("beforeend", markup);
     lightbox = new SimpleLightbox('.photo-card a', {
         nav: true,
@@ -181,10 +183,11 @@ function createGallery(photoData) {
         });
 }
 
+//funkcja uruchomienia lightboxa
 function openBigImage(event) {
-        event.preventDefault()
-        dataSource = event.target.parentNode.href
-        lightbox.open(dataSource)
+      event.preventDefault()
+      dataSource = event.target.parentNode.href
+      lightbox.open(dataSource)
 }
 
 
