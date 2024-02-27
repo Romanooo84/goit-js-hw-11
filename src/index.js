@@ -11,7 +11,7 @@ let newScrollPoint
 let pageNumber = 1
 let lightbox
 let perPage = 40
-let totalHits
+
 
 //inicjalizacja Notyiflix
 Notiflix.Notify.init({
@@ -40,7 +40,6 @@ Notiflix.Notify.init({
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
     backOverlayColor: 'rgba(50,198,130,0.2)',
   },
-
 });
 
 
