@@ -36,7 +36,7 @@ a{
 .img-div{
     display: flex;
     flex-direction: column;
-    flex-basis: calc((100% - 3*24px)/4);
+    flex-basis: calc((100% - 2*24px)/3);
     margin: auto;
     padding-top: 20px;
 
