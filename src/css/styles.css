@@ -43,8 +43,6 @@ a{
 }
 
 .link-div{
-    overflow: hidden;
-    position: relative;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -56,7 +54,9 @@ a{
     object-fit: cover;
     opacity: 0.6;
     filter: grayscale(40%);
-    transition: transform 1s ease-in-out, opacity 1s ease, filter 1s ease-in
+    transition: transform 1s ease-in-out, opacity 1s ease, filter 1s ease-in;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 
@@ -261,4 +261,25 @@ input:focus+.line:after {
     animation-delay: 0s;
     -webkit-animation-delay: 0s;
  
+}
+
+@keyframes moveContainer {
+    from {
+        transform: translateX(-200%) translateY(100%) rotateY(200deg) rotateZ(20deg) rotateX(50deg);
+        /* Przesuń o 100% szerokości ekranu w lewo */
+        opacity: 0.75;
+    }
+
+    to {
+        transform: translateX(0) translateY(0) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
+        /* Zatrzymaj się na prawej stronie ekranu */
+        opacity: 1;
+    }
+}
+
+.intro {
+        /* Ustawienie na absolute lub relative, w zależności od potrzeb */
+    animation: moveContainer 0.75s ease-out forwards;
+    /* Dostosuj czas trwania i funkcję timingu według potrzeb */
+    
 }

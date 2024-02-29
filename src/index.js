@@ -148,36 +148,41 @@ function getData(data) {
 
 //funkcja tworzenia galerii
 function createGallery(photoData) { 
-    const markup = photoData.map((list) => `
-    <div class='img-div overflow-hidden'>
-        <div class='link-div'>
-            <a href='${list.largeImageURL}'>
-                <img class='img-block drop-in-2' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
-            </a>
-        </div>
-        <div class="info drop-in">
-            <p class="info-item">
-                <b>Likes:${list.likes}</b>
-            </p>
-            <p class="info-item">
-                <b>Views:${list.views}</b>
-            </p>
-            <p class="info-item">
-                <b>Comments:${list.comments}</b>
-            </p>
-            <p class="info-item">
-                <b>Downloads:${list.downloads}</b>
-            </p>
-        </div>
-    </div>`).join('')
-    //zainicjowanie lightboxa
+    let i = 0;
+    const markup = photoData.map((list) => {
+        i += 0.15;
+        return `<div class='img-div'>
+            <div class='link-div'>
+                <a href='${list.largeImageURL}'>
+                    <img class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
+                </a>
+            </div>
+            <div class="info drop-in">
+                <p class="info-item">
+                    <b>Likes: ${list.likes}</b>
+                </p>
+                <p class="info-item">
+                    <b>Views: ${list.views}</b>
+                </p>
+                <p class="info-item">
+                    <b>Comments: ${list.comments}</b>
+                </p>
+                <p class="info-item">
+                    <b>Downloads: ${list.downloads}</b>
+                </p>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Zainicjowanie lightboxa
     gallery.insertAdjacentHTML("beforeend", markup);
     lightbox = new SimpleLightbox('.photo-card a', {
         nav: true,
         close: true,
         animationSlide: true,
-        });
+    });
 }
+
 
 //funkcja uruchomienia lightboxa
 function openBigImage(event) {
