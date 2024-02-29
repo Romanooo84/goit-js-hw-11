@@ -109,7 +109,7 @@ a{
     font-size: 25px;
     background-color: black;
     border-style: none;
-    height: 5vh;
+    height: 20px;
     transition: transform 0.5s ease-in-out
 }
 
@@ -169,6 +169,10 @@ input:focus+.line:after {
     transform: scalex(0);
     transition: transform 0.3s ease;
     background: rgba(234, 179, 41, 0.837)
+}
+
+.search-form{
+    display: flex;
 }
 
 .scroll-down{
@@ -282,4 +286,46 @@ input:focus+.line:after {
     animation: moveContainer 0.75s ease-out forwards;
     /* Dostosuj czas trwania i funkcję timingu według potrzeb */
     
+}
+
+@media screen and (max-width: 420px) {
+    body {
+        background-color: black;
+        color: rgba(228, 193, 104, 0.837);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-width: 80vw;
+        margin: auto;
+        min-width: 420px;
+    }
+
+    a {
+        height: 20px;
+        width: 20vw;
+        /* Popraw błąd literówki: było 20hw */
+        display: block;
+    }
+
+    .field {
+        position: relative;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        max-width: 1200px;
+        min-width: 420px;
+    }
+
+    svg{
+        min-height: 25px;
+    }
+
+   .searchButton {
+       font-size: 25px;
+       background-color: black;
+       border-style: none;
+       height: 20px;
+       min-height: 20px;
+       transition: transform 0.5s ease-in-out;
+       
+   }
 }
