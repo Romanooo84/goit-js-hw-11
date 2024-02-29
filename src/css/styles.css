@@ -10,7 +10,6 @@ body{
 
 a{
     height: 20vw;
-    width: 20hw;
     display: block;
 }
 
@@ -301,10 +300,8 @@ input:focus+.line:after {
     }
 
     a {
-        height: 20px;
-        width: 20vw;
-        /* Popraw błąd literówki: było 20hw */
         display: block;
+        height: 100%;
     }
 
     .field {
@@ -326,6 +323,22 @@ input:focus+.line:after {
        height: 20px;
        min-height: 20px;
        transition: transform 0.5s ease-in-out;
-       
+   }
+
+   .img-div {
+       display: flex;
+       flex-direction: column;
+       margin: auto;
+       padding-top: 20px;
+   }
+
+   .info-item {
+       display: flex;
+       justify-content: center;
+   }
+   .photo-card {
+       display: flex;
+       flex-wrap: wrap;
+       flex-direction: column;
    }
 }
