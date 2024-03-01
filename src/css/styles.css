@@ -268,7 +268,7 @@ input:focus+.line:after {
 
 @keyframes moveContainer {
     from {
-        transform: translateX(-200%) translateY(100%) rotateY(200deg) rotateZ(20deg) rotateX(50deg);
+        transform: translateX(-400%) translateY(100%) rotateY(200deg) rotateZ(20deg) rotateX(50deg);
         /* Przesuń o 100% szerokości ekranu w lewo */
         opacity: 0.75;
     }
