@@ -150,7 +150,7 @@ function getData(data) {
 function createGallery(photoData) { 
     let i = 0;
     const markup = photoData.map((list) => {
-        i += 0.5;
+        i += 0.25;
         return `<div class='img-div'>
             <div class='link-div'>
                 <a href='${list.largeImageURL}'>
