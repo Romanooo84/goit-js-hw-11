@@ -141,7 +141,7 @@ function createGallery(photoData) {
     const markup = photoData.map((list) => {
         i += 1 / a;
         return `<div class='img-div'>
-            <div class='link-div'>
+            <div id='container${i}' class='link-div'>
                 <a href='${list.largeImageURL}'>
                     <img id=${i} class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
                 </a>
@@ -176,13 +176,12 @@ function createGallery(photoData) {
     const loop = async (timeDelay, b) => {
         return new Promise(resolve => {
             setTimeout(() => {
-                console.log(b)
-                var img = document.querySelector(`[id="${b}"]`);
-                console.log(img.dataSource)
+                let img = document.querySelector(`[id="${b}"]`);
+                let imgContainer = document.querySelector(`[id='container${b}']`)
+                console.log(imgContainer)
                 img.classList.remove('intro');
-                console.log('remove1')
                 img.removeAttribute('style');
-                console.log('remove2')
+                imgContainer.style.overflow = "hidden";
                 resolve();
             }, timeDelay);
         });
@@ -190,7 +189,6 @@ function createGallery(photoData) {
     const runLoop = async () => {
         for (let b = 1/a; b < photoData.length / a; b += 1 / a) {
             let timeDelay = (b === 1 / a) ? time : 600;
-            console.log(timeDelay)
             await loop(timeDelay, b);
         }
     };
