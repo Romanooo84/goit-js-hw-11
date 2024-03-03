@@ -180,7 +180,7 @@ function createGallery(photoData) {
                 let imgContainer = document.querySelector(`[id='container${b}']`)
                 img.classList.remove('intro');
                 img.removeAttribute('style');
-                imgContainer.style.overflow = "hidden";
+                //imgContainer.style.overflow = "hidden";
                 resolve();
             }, timeDelay);
         });
