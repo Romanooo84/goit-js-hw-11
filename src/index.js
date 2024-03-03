@@ -1,7 +1,6 @@
 import axios from 'axios'
 import SimpleLightbox from "simplelightbox";
 import Notiflix from 'notiflix';
-
 //inicjaliacja zmiennych
 let input = document.querySelector(".input")
 let searchButton = document.querySelector(".searchButton")
@@ -11,8 +10,6 @@ let newScrollPoint
 let pageNumber = 1
 let lightbox
 let perPage = 40
-
-
 //inicjalizacja Notyiflix
 Notiflix.Notify.init({
   width: '200px',
@@ -41,17 +38,12 @@ Notiflix.Notify.init({
     backOverlayColor: 'rgba(50,198,130,0.2)',
   },
 });
-
-
 //nasłuchiwanie przycisku wyszukiwania
 searchButton.addEventListener('click', start)
-
 //nasłuchiwanie przycisku przewijania strony
 scroll.addEventListener('click', scrollPage)
-
 //nasłuchiwanie klikniecia w galerie
 gallery.addEventListener('click',openBigImage)
-
 function start(event) {
     pageNumber=1
     event.preventDefault()
@@ -61,14 +53,12 @@ function start(event) {
     userInput.split(" ").join('+');
     getData(userInput)
 }
-
 function scrollPage(event) {
     event.preventDefault()
     let userInput = input.value;
     userInput.split(" ").join('+');
     getData(userInput);
 }
-
 //funkcja pobierania danych
 function getData(data) {
     //wybór parametrów do pobrania danych
@@ -81,10 +71,8 @@ function getData(data) {
     per_page: perPage ,
     page: pageNumber,
     });
-
     //utworzenie liku do przesłania na serwer
     let url = `https://pixabay.com/api/?${searchParams}`
-
     //funkcja pobierania danych z serwera
     const photoDwonload = async () => {
         try {
@@ -174,26 +162,35 @@ function createGallery(photoData) {
             </div>
         </div>`;
     }).join('');
+    console.log('Before calling runLoop1');
+    // Zainicjowanie lightboxa
+    gallery.insertAdjacentHTML("beforeend", markup);
+    lightbox = new SimpleLightbox('.photo-card a', {
+        nav: true,
+        close: true,
+        animationSlide: true,
+    });
 
-    // usuwanie klasy intro i style po wykonaniu animacji
-    let time = 2000; // deklaracja czasu opóźnienia początkowego
+    let time = 2000;
 
-    // funkcja usuwania klas
     const loop = async (timeDelay, b) => {
         return new Promise(resolve => {
             setTimeout(() => {
+                console.log(b)
                 var img = document.querySelector(`[id="${b}"]`);
+                console.log(img.dataSource)
                 img.classList.remove('intro');
+                console.log('remove1')
                 img.removeAttribute('style');
+                console.log('remove2')
                 resolve();
             }, timeDelay);
         });
     };
-
-    //funkcja uruchomienia suwania klas i ustawiania czasu trwania funkcji
     const runLoop = async () => {
-        for (let b = 0.5; b < photoData.length / a; b += 1 / a) {
+        for (let b = 1/a; b < photoData.length / a; b += 1 / a) {
             let timeDelay = (b === 1 / a) ? time : 600;
+            console.log(timeDelay)
             await loop(timeDelay, b);
         }
     };
@@ -201,13 +198,9 @@ function createGallery(photoData) {
     runLoop();
 }
 
-
 //funkcja uruchomienia lightboxa
 function openBigImage(event) {
       event.preventDefault()
       dataSource = event.target.parentNode.href
       lightbox.open(dataSource)
 }
-
-
-
