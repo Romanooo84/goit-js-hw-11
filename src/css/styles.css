@@ -30,6 +30,7 @@ a{
 .photo-card{
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .img-div{
@@ -38,6 +39,8 @@ a{
     flex-basis: calc((100% - 3*24px)/4);
     margin: auto;
     padding-top: 20px;
+    position: relative;
+    overflow: hidden;
 
 }
 
@@ -48,7 +51,7 @@ a{
 
 .intro {
     /* Ustawienie na absolute lub relative, w zależności od potrzeb */
-    animation: moveContainer 0.75s ease-out forwards;
+    animation: moveContainer 1s ease-out forwards;
     /* Dostosuj czas trwania i funkcję timingu według potrzeb */
 
 }
@@ -78,6 +81,14 @@ a{
     background-color: #5a7285a2;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    top: 70%;
+    transform: translateY(100%);
+    position: absolute;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-div:hover .info{
+    transform: translateY(0%);
 }
 
 .info-item{

@@ -114,7 +114,7 @@ function getData(data) {
         //wywołaeni funkcji tworzenia galerii
         createGallery(photoData)
         //utworzenie punkut przewijania
-        let scrollPoint = `<div id='${pageNumber}'></div>`;
+        let scrollPoint = `<div id='scroll${pageNumber}'></div>`;
         gallery.insertAdjacentHTML("beforeend", scrollPoint);
         //ustawienie nowego numeru strony do pobrania zdjęc  
     })
@@ -124,7 +124,8 @@ function getData(data) {
             newScrollPoint.scrollIntoView({ behavior: "smooth", block:"start" });
         }  
         //utwórz nowy punkt przewijania
-        newScrollPoint = document.getElementById(`${pageNumber}`)
+        newScrollPoint = document.getElementById(`scroll${pageNumber}`)
+        console.log(newScrollPoint)
         //dodaj nowe id do linku a
         scroll.href = `#${pageNumber}`;
         pageNumber += 1   
@@ -137,7 +138,7 @@ function getData(data) {
 //funkcja tworzenia galerii
 function createGallery(photoData) {
     let i = 0;
-    let a = 2; //podzielnik
+    let a = 8; //podzielnik
     const markup = photoData.map((list) => {
         i += 1 / a;
         return `<div class='img-div'>
@@ -146,7 +147,7 @@ function createGallery(photoData) {
                     <img id=${i} class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
                 </a>
             </div>
-            <div class="info drop-in">
+            <div class="info">
                 <p class="info-item">
                     <b>Likes: ${list.likes}</b>
                 </p>
@@ -162,7 +163,6 @@ function createGallery(photoData) {
             </div>
         </div>`;
     }).join('');
-    console.log('Before calling runLoop1');
     // Zainicjowanie lightboxa
     gallery.insertAdjacentHTML("beforeend", markup);
     lightbox = new SimpleLightbox('.photo-card a', {
@@ -171,14 +171,13 @@ function createGallery(photoData) {
         animationSlide: true,
     });
 
-    let time = 2000;
+    let time = 1000;
 
     const loop = async (timeDelay, b) => {
         return new Promise(resolve => {
             setTimeout(() => {
                 let img = document.querySelector(`[id="${b}"]`);
                 let imgContainer = document.querySelector(`[id='container${b}']`)
-                console.log(imgContainer)
                 img.classList.remove('intro');
                 img.removeAttribute('style');
                 imgContainer.style.overflow = "hidden";
@@ -188,7 +187,7 @@ function createGallery(photoData) {
     };
     const runLoop = async () => {
         for (let b = 1/a; b < photoData.length / a; b += 1 / a) {
-            let timeDelay = (b === 1 / a) ? time : 600;
+            let timeDelay = (b === 1 / a) ? time : 500;
             await loop(timeDelay, b);
         }
     };
