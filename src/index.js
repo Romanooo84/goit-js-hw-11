@@ -147,14 +147,15 @@ function getData(data) {
 }
 
 //funkcja tworzenia galerii
-function createGallery(photoData) { 
+function createGallery(photoData) {
     let i = 0;
+    let a = 2; //podzielnik
     const markup = photoData.map((list) => {
-        i += 0.25;
+        i += 1 / a;
         return `<div class='img-div'>
             <div class='link-div'>
                 <a href='${list.largeImageURL}'>
-                    <img class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
+                    <img id=${i} class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
                 </a>
             </div>
             <div class="info drop-in">
@@ -173,16 +174,32 @@ function createGallery(photoData) {
             </div>
         </div>`;
     }).join('');
-
-    // Zainicjowanie lightboxa
     gallery.insertAdjacentHTML("beforeend", markup);
-    lightbox = new SimpleLightbox('.photo-card a', {
-        nav: true,
-        close: true,
-        animationSlide: true,
-    });
-}
+    let b = 1 / a;
+    let step = 1;
+    let time = 2000;
 
+    const loop = async (timeDelay, b) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                var img = document.querySelector(`[id="${b}"]`);
+                img.classList.remove('intro');
+                img.removeAttribute('style');
+                resolve();
+            }, timeDelay);
+        });
+    };
+
+    const runLoop = async () => {
+        for (let b = 0.5; b < photoData.length / a; b += 1 / a) {
+            let timeDelay = (b === 1 / a) ? time : 600;
+            console.log(timeDelay)
+            await loop(timeDelay, b);
+        }
+    };
+
+    runLoop();
+}
 
 //funkcja uruchomienia lightboxa
 function openBigImage(event) {

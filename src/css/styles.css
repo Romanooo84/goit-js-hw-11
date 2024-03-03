@@ -46,6 +46,13 @@ a{
     border-top-right-radius: 15px;
 }
 
+.intro {
+    /* Ustawienie na absolute lub relative, w zależności od potrzeb */
+    animation: moveContainer 0.75s ease-out forwards;
+    /* Dostosuj czas trwania i funkcję timingu według potrzeb */
+
+}
+
 .img-block{
     display: block;
     height: 100%;
@@ -57,7 +64,6 @@ a{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
-
 
 .img-block:hover{
     transform: scale(1.1);
@@ -85,11 +91,11 @@ a{
 }
 
 .drop-in {
-    animation: drop-in 1200ms ease 100ms backwards;
+    animation: drop-in 2500ms ease 100ms backwards;
 }
 
 .drop-in-2 {
-    animation: drop-in 1500ms ease 100ms backwards;
+    animation: drop-in 2500ms ease 100ms backwards;
 }
 
 @keyframes drop-in {
@@ -99,7 +105,7 @@ a{
     }
 
     to {
-        opacity: 0.6;
+        opacity: 1;
         transform: scale(1);
     }
 }
@@ -270,22 +276,16 @@ input:focus+.line:after {
     from {
         transform: translateX(-400%) translateY(100%) rotateY(200deg) rotateZ(20deg) rotateX(50deg);
         /* Przesuń o 100% szerokości ekranu w lewo */
-        opacity: 0.75;
+        opacity: 0.4;
     }
 
     to {
         transform: translateX(0) translateY(0) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
         /* Zatrzymaj się na prawej stronie ekranu */
-        opacity: 1;
+        opacity: 0.6
     }
 }
 
-.intro {
-        /* Ustawienie na absolute lub relative, w zależności od potrzeb */
-    animation: moveContainer 0.75s ease-out forwards;
-    /* Dostosuj czas trwania i funkcję timingu według potrzeb */
-    
-}
 
 @media screen and (max-width: 420px) {
     body {
@@ -342,11 +342,11 @@ input:focus+.line:after {
        flex-direction: column;
    }
    .drop-in {
-       animation: drop-in 3000ms ease 100ms backwards;
+       animation: drop-in 1700ms ease 100ms backwards;
    }
 
    .drop-in-2 {
-       animation: drop-in 3000ms ease 100ms backwards;
+       animation: drop-in 1700ms ease 100ms backwards;
    }
 
    @keyframes drop-in {
@@ -356,22 +356,22 @@ input:focus+.line:after {
        }
 
        to {
-           opacity: 0.6;
+           opacity: 1;
            transform: scale(1);
        }
    }
 
    @keyframes moveContainer {
        from {
-           transform: translateX(-200%) translateY(100%) rotateY(200deg) rotateZ(20deg) rotateX(50deg);
+           transform: translateX(-100%) translateY(100%) rotateY(90deg) rotateZ(40deg) rotateX(70deg);
            /* Przesuń o 100% szerokości ekranu w lewo */
-           opacity: 0.75;
+           opacity: 0.4;
        }
 
        to {
            transform: translateX(0) translateY(0) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
            /* Zatrzymaj się na prawej stronie ekranu */
-           opacity: 1;
+           opacity: 0.6;
        }
    }
 
