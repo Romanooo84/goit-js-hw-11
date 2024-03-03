@@ -142,7 +142,7 @@ function createGallery(photoData) {
     const markup = photoData.map((list) => {
         i += 1 / a;
         return `<div class='img-div'>
-            <div id='container${i}' class='link-div'>
+            <div class='link-div'>
                 <a href='${list.largeImageURL}'>
                     <img id=${i} class='img-block intro' style='opacity: 0; animation-delay: ${i}s;' src="${list.webformatURL}" alt="${list.tags}" loading="lazy" />
                 </a>

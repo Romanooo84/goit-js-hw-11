@@ -68,7 +68,7 @@ a{
     border-top-right-radius: 15px;
 }
 
-.img-block:hover{
+.img-div:hover .img-block{
     transform: scale(1.1);
     opacity: 1;
     filter: grayscale(0%);
