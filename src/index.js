@@ -174,15 +174,11 @@ function createGallery(photoData) {
             </div>
         </div>`;
     }).join('');
-    gallery.insertAdjacentHTML("beforeend", markup);
-    lightbox = new SimpleLightbox('.photo-card a', {
-        nav: true,
-        close: true,
-        animationSlide: true,
-        });
 
-    let time = 2000;
+    // usuwanie klasy intro i style po wykonaniu animacji
+    let time = 2000; // deklaracja czasu opóźnienia początkowego
 
+    // funkcja usuwania klas
     const loop = async (timeDelay, b) => {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -194,10 +190,10 @@ function createGallery(photoData) {
         });
     };
 
+    //funkcja uruchomienia suwania klas i ustawiania czasu trwania funkcji
     const runLoop = async () => {
         for (let b = 0.5; b < photoData.length / a; b += 1 / a) {
             let timeDelay = (b === 1 / a) ? time : 600;
-            console.log(timeDelay)
             await loop(timeDelay, b);
         }
     };
