@@ -10,6 +10,8 @@ let newScrollPoint
 let pageNumber = 1
 let lightbox
 let perPage = 40
+let b = 0;
+let i = 0;
 //inicjalizacja Notyiflix
 Notiflix.Notify.init({
   width: '200px',
@@ -137,7 +139,6 @@ function getData(data) {
 
 //funkcja tworzenia galerii
 function createGallery(photoData) {
-    let i = 0;
     let a = 8; //podzielnik
     const markup = photoData.map((list) => {
         i += 1 / a;
@@ -178,6 +179,7 @@ function createGallery(photoData) {
             setTimeout(() => {
                 let img = document.querySelector(`[id="${b}"]`);
                 let imgContainer = document.querySelector(`[id='container${b}']`)
+
                 img.classList.remove('intro');
                 img.removeAttribute('style');
                 //imgContainer.style.overflow = "hidden";
@@ -186,8 +188,12 @@ function createGallery(photoData) {
         });
     };
     const runLoop = async () => {
-        for (let b = 1/a; b < photoData.length / a; b += 1 / a) {
-            let timeDelay = (b === 1 / a) ? time : 500;
+        console.log("start")
+        let length = photoData.length * pageNumber/a
+        b = (pageNumber === 1) ? b += 1 / a : b;
+        for (b; b < length +1/a; b += 1 / a) {
+            console.log(b)
+            let timeDelay = (b === 1 / a) ? time : 100;
             await loop(timeDelay, b);
         }
     };
