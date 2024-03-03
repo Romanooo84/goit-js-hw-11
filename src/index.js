@@ -175,8 +175,12 @@ function createGallery(photoData) {
         </div>`;
     }).join('');
     gallery.insertAdjacentHTML("beforeend", markup);
-    let b = 1 / a;
-    let step = 1;
+    lightbox = new SimpleLightbox('.photo-card a', {
+        nav: true,
+        close: true,
+        animationSlide: true,
+        });
+
     let time = 2000;
 
     const loop = async (timeDelay, b) => {
@@ -200,6 +204,7 @@ function createGallery(photoData) {
 
     runLoop();
 }
+
 
 //funkcja uruchomienia lightboxa
 function openBigImage(event) {
